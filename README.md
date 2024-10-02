@@ -16,23 +16,24 @@
 
 # rspack-manifest-plugin
 
-A Rspack plugin for generating an asset manifest.
+An Rspack plugin for generating an asset manifest.
 
 :heart: Please consider [Sponsoring shellscape (author of webpack-manifest-plugin)](https://github.com/sponsors/shellscape)
 
 ## Notice
 
-This plugin is forked from [shellscape/webpack-manifest-plugin](https://github.com/shellscape/webpack-manifest-plugin).
+This plugin is forked from [rspack-contrib/rspack-manifest-plugin](https://github.com/rspack-contrib/rspack-manifest-plugin), which is a fork of [shellscape/webpack-manifest-plugin](https://github.com/shellscape/webpack-manifest-plugin).
 
 The function of this plugin is basically the same as [shellscape/webpack-manifest-plugin](https://github.com/shellscape/webpack-manifest-plugin).
 
+The only difference is that this plugin exposes `stats` to the `generate` function, which allows for more flexibility 
+in generating the manifest and potentially provides data that is required to generate the manifest.
+
 Change list:
 
-- Rename package to `rspack-manifest-plugin`
-- Import type from `@rspack/core`
-- Add `@rspack/core` to peer dependencies and remove `webpack`
-- Add `RspackManifestPlugin` export
-- Replace `tapable` dependency with `@rspack/lite-tapable`
+- It returns a few more things with the `getStats()` function.
+- Expose `stats` to the `generate` function.
+- Rename package to `@deviousm/rspack-manifest-plugin`
 
 ## Requirements
 
@@ -63,7 +64,7 @@ npm install rspack-manifest-plugin --save-dev
 Create a `rspack.config.js` file:
 
 ```js
-const { RspackManifestPlugin } = require('rspack-manifest-plugin');
+const { RspackManifestPlugin } = require('@deviousm/rspack-manifest-plugin');
 const options = { ... };
 
 module.exports = {
@@ -124,7 +125,7 @@ Allows filtering the files which make up the manifest. The passed function shoul
 Type: `Function`<br>
 Default: `undefined`
 
-A custom `Function` to create the manifest. The passed function should match the signature of `(seed: Object, files: FileDescriptor[], entries: string[]) => Object` and can return anything as long as it's serialisable by `JSON.stringify`.
+A custom `Function` to create the manifest. The passed function should match the signature of `(seed: Object, files: FileDescriptor[], stats: StatsCompilation, entries: string[]) => Object` and can return anything as long as it's serialisable by `JSON.stringify`.
 
 ### `map`
 

@@ -79,6 +79,9 @@ const emitHook = function emit(
     assets: true,
     // @ts-expect-error not supported by Rspack
     cachedAssets: true,
+    chunkGroups: true,
+    chunkOrigins: true,
+    entrypoints: true,
     // Note: Webpack v5 compat
     ids: true,
     publicPath: true
@@ -145,7 +148,7 @@ const emitHook = function emit(
 
   files = transformFiles(files, options);
 
-  let manifest = generateManifest(compilation, files, options);
+  let manifest = generateManifest(compilation, files, stats, options);
   const isLastEmit = emitCount === 0;
 
   manifest = getCompilerHooks(compiler).beforeEmit.call(manifest);

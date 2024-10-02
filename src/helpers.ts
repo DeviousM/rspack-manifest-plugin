@@ -1,6 +1,6 @@
 import { dirname, join, basename } from 'path';
 
-import { AssetInfo, Chunk, Asset, Compilation } from '@rspack/core';
+import { AssetInfo, Chunk, Asset, Compilation, StatsCompilation } from '@rspack/core';
 
 import { InternalOptions, Manifest } from './';
 
@@ -25,6 +25,7 @@ export interface CompilationAsset extends Asset {
 const generateManifest = (
   compilation: Compilation,
   files: FileDescriptor[],
+  stats: StatsCompilation,
   { generate, seed = {} }: InternalOptions
 ) => {
   let result: Manifest;
@@ -34,7 +35,7 @@ const generateManifest = (
       (e, [name, entrypoint]) => Object.assign(e, { [name]: entrypoint.getFiles() }),
       {} as Record<string, any>
     );
-    result = generate(seed, files, entrypoints);
+    result = generate(seed, files, stats, entrypoints);
   } else {
     result = files.reduce(
       (manifest, file) => Object.assign(manifest, { [file.name]: file.path }),

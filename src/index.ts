@@ -1,7 +1,7 @@
 import { relative, resolve } from 'path';
 
 import { SyncHook } from '@rspack/lite-tapable';
-import type { Compiler, RspackPluginInstance, Compilation } from '@rspack/core';
+import type { Compiler, RspackPluginInstance, Compilation, StatsCompilation } from '@rspack/core';
 
 import { FileDescriptor } from './helpers';
 import { beforeRunHook, emitHook, getCompilerHooks } from './hooks';
@@ -19,6 +19,7 @@ export interface InternalOptions {
   generate: (
     seed: Record<any, any>,
     files: FileDescriptor[],
+    stats: StatsCompilation,
     entries: Record<string, string[]>
   ) => Manifest;
   map: (file: FileDescriptor) => FileDescriptor;
