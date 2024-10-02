@@ -26,7 +26,7 @@ This plugin is forked from [rspack-contrib/rspack-manifest-plugin](https://githu
 
 The function of this plugin is basically the same as [shellscape/webpack-manifest-plugin](https://github.com/shellscape/webpack-manifest-plugin).
 
-The only difference is that this plugin exposes `stats` to the `generate` function, which allows for more flexibility 
+The only difference is that this plugin exposes `stats` to the `generate` function, which allows for more flexibility
 in generating the manifest and potentially provides data that is required to generate the manifest.
 
 Change list:
@@ -37,7 +37,7 @@ Change list:
 
 ## Requirements
 
-`rspack-manifest-plugin` is an [evergreen 🌲](./.github/FAQ.md#what-does-evergreen-mean) module.
+`@deviousm/rspack-manifest-plugin` is an [evergreen 🌲](./.github/FAQ.md#what-does-evergreen-mean) module.
 
 This module requires an [Active LTS](https://github.com/nodejs/Release) Node version (v12.0.0+) and Webpack v5.0.0.
 
@@ -56,7 +56,7 @@ $ npm install pnpm -g
 Using npm:
 
 ```console
-npm install rspack-manifest-plugin --save-dev
+npm install @deviousm/rspack-manifest-plugin --save-dev
 ```
 
 ## Usage
